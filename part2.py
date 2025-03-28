@@ -1,7 +1,18 @@
-class ShoppingCart:
+class ItemToPurchase:
     def __init__(self):
-        self.customer_name = "none"
-        self.current_date = "January 1, 2020"
+        self.item_name = "none"
+        self.item_price = 0
+        self.item_quantity = 0
+
+    def print_item_cost(self):
+        total_cost = self.item_price * self.item_quantity
+        print(f"{self.item_name} {self.item_quantity} @ ${self.item_price} = ${total_cost}")
+
+
+class ShoppingCart:
+    def __init__(self, customer_name="none", current_date="January 1, 2020"):
+        self.customer_name = customer_name
+        self.current_date = current_date
         self.cart_items = []
     
     def add_item(self, item):
@@ -46,6 +57,7 @@ class ShoppingCart:
         for item in self.cart_items:
             print(f"{item.item_name}: No description provided")
 
+
 def print_menu(cart):
     while True:
         print("\nMENU")
@@ -80,12 +92,14 @@ def print_menu(cart):
         else:
             print("Invalid option. Try again.")
 
+
 # Main function
 def main():
-    cart = ShoppingCart()
-    cart.customer_name = input("Enter customer's name: ")
-    cart.current_date = input("Enter today's date: ")
+    customer_name = input("Enter customer's name: ")
+    current_date = input("Enter today's date: ")
+    cart = ShoppingCart(customer_name, current_date)
     print_menu(cart)
+
 
 if __name__ == "__main__":
     main()
